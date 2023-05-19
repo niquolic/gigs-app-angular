@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './layouts/menu/menu.component';
 import { GigsListComponent } from './layouts/gigs-list/gigs-list.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './layouts/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    GigsListComponent
+    GigsListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

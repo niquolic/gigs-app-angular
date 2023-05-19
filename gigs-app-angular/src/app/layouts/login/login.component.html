@@ -1,0 +1,6 @@
+<form>
+    <label for="emailInput">Veuillez vous connecter</label>
+    <input type="text" id="loginInput" [(ngModel)]="userLogin">
+    <input type="password" id="passwordInput" [(ngModel)]="userPassword">
+    <button type="submit" (ngSubmit)="onSubmitForm()">OK!</button>
+</form>
