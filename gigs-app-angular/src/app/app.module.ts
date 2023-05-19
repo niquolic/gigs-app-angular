@@ -7,6 +7,7 @@ import { MenuComponent } from './layouts/menu/menu.component';
 import { GigsListComponent } from './layouts/gigs-list/gigs-list.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './layouts/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './layouts/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
