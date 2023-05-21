@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     const apiUrl = 'http://127.0.0.1:8080/getUserByLoginAndPassword';
     const params = new HttpParams().set('login', this.userLogin).set('password', this.userPassword);
 
-    this.http.get(apiUrl, { params }).subscribe(
+    this.http.get(apiUrl, { params, responseType: 'text'  }).subscribe(
       (response) => {
         // Traitement de la réponse du backend
         console.log('a')
