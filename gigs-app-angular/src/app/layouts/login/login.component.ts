@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitForm(event: Event) {
-    event.preventDefault;
+    event.preventDefault();
 
     // Définition de l'URL de l'API
     const apiUrl = 'http://127.0.0.1:8080/getUserByLoginAndPassword';
@@ -49,11 +49,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', response);
         localStorage.setItem('userId', userId.toString());
         // Redirection vers la page d'accueil
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         // Gestion des erreurs
-        console.log(error)
+        console.log(error);
       }
     );
   }
