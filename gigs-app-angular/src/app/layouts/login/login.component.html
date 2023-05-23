@@ -1,8 +1,10 @@
 <!-- Appel de la fonction onSubmitForm du fichier TypeScript du composant -->
 <form (submit)="onSubmitForm($event)">
-    <label for="emailInput">Veuillez vous connecter</label>
-    <!-- [(ngModel)] permet de lier la valeur de l'input à la variable du fichier TypeScript -->
-    <input type="text" id="loginInput" name="loginInput" [(ngModel)]="userLogin">
-    <input type="password" id="passwordInput" name="passwordInput" [(ngModel)]="userPassword">
-    <button type="submit">OK!</button>
+    <div>
+        <label for="emailInput">Veuillez vous connecter</label>
+        <!-- [(ngModel)] permet de lier la valeur de l'input à la variable du fichier TypeScript -->
+        <input type="text" id="loginInput" name="loginInput" [(ngModel)]="userLogin" placeholder="Login">
+        <input type="password" id="passwordInput" name="passwordInput" [(ngModel)]="userPassword" placeholder="Password">
+        <button type="submit">Valider</button>
+    </div>
 </form>
