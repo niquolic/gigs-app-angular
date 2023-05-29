@@ -16,7 +16,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MenuComponent,
     GigsListComponent,
     LoginComponent,
-    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
