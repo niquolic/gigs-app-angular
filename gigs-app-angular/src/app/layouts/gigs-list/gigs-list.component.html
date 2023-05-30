@@ -17,5 +17,5 @@
 
 <div *ngIf="gigs.length === 0">
     <p id="emptyShowsText">Vous n'avez pas saisi de concerts.</p>
-    <button>Ajouter un concert</button>
+    <button (click)="addGigs()">Ajouter un concert</button>
 </div>

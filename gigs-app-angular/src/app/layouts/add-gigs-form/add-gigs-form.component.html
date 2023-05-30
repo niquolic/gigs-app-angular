@@ -1,0 +1,10 @@
+<form>
+    <label for="emailInput">Ajoutez votre concert</label>
+    <!-- [(ngModel)] permet de lier la valeur de l'input à la variable du fichier TypeScript -->
+    <input type="text" id="bandInput" name="bandInput" [(ngModel)]="bandGig" placeholder="Groupe/Artiste">
+    <input type="text" id="cityInput" name="cityInput" [(ngModel)]="cityGig" placeholder="Ville">
+    <input type="text" id="venueInput" name="venueInput" [(ngModel)]="venueGig" placeholder="Lieu">
+    <input type="text" id="countryInput" name="countryInput" [(ngModel)]="countryGig" placeholder="Pays">
+    <input type="date" id="dateInput" name="dateInput" [(ngModel)]="dateGig" placeholder="Date">
+    <button type="submit">Valider</button>
+</form>

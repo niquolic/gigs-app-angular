@@ -23,4 +23,9 @@ export class GigsListComponent implements OnInit{
     }
   }
 
+  addGigs() {
+    // Redirection vers la page d'ajout de concerts
+    window.location.href = '/add-gigs';
+  }
+
 }

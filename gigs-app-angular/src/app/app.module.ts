@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './layouts/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AddGigsFormComponent } from './layouts/add-gigs-form/add-gigs-form.component';
+import { AddGigsComponent } from './pages/add-gigs/add-gigs.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MenuComponent,
     GigsListComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddGigsFormComponent,
+    AddGigsComponent
   ],
   imports: [
     BrowserModule,
