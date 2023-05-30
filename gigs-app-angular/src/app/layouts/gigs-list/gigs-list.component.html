@@ -1,39 +1,21 @@
-<table>
+<table *ngIf="gigs.length > 0">
     <tr>
         <th>Groupe/Artiste</th>
         <th>Lieu</th>
+        <th>Ville</th>
+        <th>Pays</th>
         <th>Date</th>
     </tr>
-    <tr>
-        <td>Slipknot</td>
-        <td>19/08/2022</td>
-        <td>Hasselt</td>
-    </tr>
-    <tr>
-        <td>Spiritbox</td>
-        <td>04/05/2023</td>
-        <td>Toronto</td>
-    </tr>
-    <tr>
-        <td>Sum 41</td>
-        <td>29/09/2022</td>
-        <td>Paris</td>
-    </tr>
-    <tr>
-        <td>Blink-182</td>
-        <td>12/05/2023</td>
-        <td>Montréal</td>
-    </tr>
-    <tr>
-        <td>Motley Crue</td>
-        <td>01/07/2023</td>
-        <td>Londres</td>
+    <tr *ngFor="let gig of gigs">
+        <td>{{ gig.band }}</td>
+        <td>{{ gig.venue }}</td>
+        <td>{{ gig.city }}</td>
+        <td>{{ gig.country }}</td>
+        <td>{{ gig.date }}</td>
     </tr>
 </table>
-<ul class="list-group">
-    <li 
-        *ngFor="let gig of gigs"
-        class="list-group-item">
-        {{ gig.venue }}
-    </li>
-  </ul>
+
+<div *ngIf="gigs.length === 0">
+    <p id="emptyShowsText">Vous n'avez pas saisi de concerts.</p>
+    <button>Ajouter un concert</button>
+</div>
