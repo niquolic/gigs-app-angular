@@ -26,15 +26,19 @@ export class AddGigsFormComponent implements OnInit {
 
   onSubmitAddForm(event: Event){
     event.preventDefault();
+    const gigData = {
+      userId: localStorage.getItem('userId'),
+      band: this.bandGig,
+      city: this.cityGig,
+      date: this.dateGig,
+      venue: this.venueGig,
+      country: this.countryGig
+    };
+    console.log(gigData);
 
     const apiUrl = "http://127.0.0.1:8080/addGigToList";
 
-    const userId = localStorage.getItem('userId');
-
-    const params = new HttpParams().set('userId', this.userId).set('band', this.bandGig)
-    .set('city', this.cityGig).set('date', this.dateGig).set('venue', this.venueGig).set('country', this.countryGig);
-
-    this.http.post(apiUrl, {params, responseType: 'Text'}).subscribe(
+    this.http.post(apiUrl, gigData).subscribe(
       (response) => {
         this.router.navigate(['/dashboard']);
       },
