@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-gigs-list',
@@ -11,7 +14,7 @@ export class GigsListComponent implements OnInit{
   // Initialisation de la propriété gigs
   gigs:any;
 
-  constructor(private serviceGigs: GetGigsComponent) { }
+  constructor(private serviceGigs: GetGigsComponent, private http: HttpClient, private router: Router, private location: Location) { }
 
   ngOnInit() {
     if(localStorage.getItem('token')) {
@@ -26,6 +29,21 @@ export class GigsListComponent implements OnInit{
   addGigs() {
     // Redirection vers la page d'ajout de concerts
     window.location.href = '/add-gigs';
+  }
+
+  deleteGig(id: any) {
+    const apiUrl = "http://127.0.0.1:8080/deleteGig";
+    this.http.post(apiUrl, id, {responseType: 'text'}).subscribe(
+      (response) => {
+        console.log('1');
+        alert("Concert supprimé");
+        window.location.reload();
+      }, (error) => {
+        console.log('2');
+        console.log(error);
+      }
+    );
+
   }
 
 }
