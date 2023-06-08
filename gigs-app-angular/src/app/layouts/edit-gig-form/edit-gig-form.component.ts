@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-gig-form',
@@ -18,7 +19,7 @@ export class EditGigFormComponent {
   venueGig!: string;
   countryGig!: string;
 
-  constructor(private serviceGigs: GetGigsComponent,private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private serviceGigs: GetGigsComponent,private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     // Récupération de l'id du concert à modifier
@@ -34,6 +35,14 @@ export class EditGigFormComponent {
 
   onSubmitEditForm(event: any) {
     event.preventDefault();
+    const url = "http://127.0.0.1:8080/editGig";
+    this.http.post(url, this.gig, {responseType: 'text'}).subscribe(
+      (response) => {
+        this.router.navigate(['/dashboard']);
+      }, (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }
