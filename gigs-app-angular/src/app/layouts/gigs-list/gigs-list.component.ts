@@ -35,15 +35,16 @@ export class GigsListComponent implements OnInit{
     const apiUrl = "http://127.0.0.1:8080/deleteGig";
     this.http.post(apiUrl, id, {responseType: 'text'}).subscribe(
       (response) => {
-        console.log('1');
         alert("Concert supprimé");
         window.location.reload();
       }, (error) => {
-        console.log('2');
         console.log(error);
       }
     );
+  }
 
+  editGig(id: any) {
+    window.location.href = '/edit-gig?id=' + id;
   }
 
 }

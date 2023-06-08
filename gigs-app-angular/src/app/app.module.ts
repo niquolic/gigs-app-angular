@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddGigsFormComponent } from './layouts/add-gigs-form/add-gigs-form.component';
 import { AddGigsComponent } from './pages/add-gigs/add-gigs.component';
+import { EditGigFormComponent } from './layouts/edit-gig-form/edit-gig-form.component';
+import { EditGigComponent } from './pages/edit-gig/edit-gig.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AddGigsComponent } from './pages/add-gigs/add-gigs.component';
     LoginComponent,
     DashboardComponent,
     AddGigsFormComponent,
-    AddGigsComponent
+    AddGigsComponent,
+    EditGigFormComponent,
+    EditGigComponent
   ],
   imports: [
     BrowserModule,
