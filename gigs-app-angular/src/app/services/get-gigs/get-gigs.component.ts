@@ -9,7 +9,7 @@ export class GetGigsComponent {
   // Récupération de l'identifiant utilisateur stocké dans le localStorage
   userId = localStorage.getItem('userId');
 
-  private urlAll = "http://127.0.0.1:8080/getGigsByUserId?id=" + this.userId;
+  private urlAll = "http://127.0.0.1:8080/getGigsByUserId?userId=" + this.userId;
   private urlId: any;
 
   constructor(private http: HttpClient) { }
@@ -20,7 +20,7 @@ export class GetGigsComponent {
   }
 
   getGigById(id: any) {
-    this.urlId = "http://127.0.0.1:8080/getGigById?id=" + id;
+    this.urlId = "http://127.0.0.1:8080/getGigById?userId=" + id;
     return this.http.get(this.urlId);
   }
 

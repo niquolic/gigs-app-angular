@@ -20,7 +20,7 @@
     </tr>
 </table>
 
-<div *ngIf="gigs.length === 0">
+<div *ngIf="showEmptyText">
     <p id="emptyShowsText">Vous n'avez pas saisi de concerts.</p>
     <button (click)="addGigs()">Ajouter un concert</button>
 </div>

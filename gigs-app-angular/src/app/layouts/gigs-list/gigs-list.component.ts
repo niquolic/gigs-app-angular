@@ -12,19 +12,30 @@ import { Location } from '@angular/common';
 export class GigsListComponent implements OnInit{
 
   // Initialisation de la propriété gigs
-  gigs:any;
+  gigs: any = [];
+  showEmptyText: boolean = false;
 
   constructor(private serviceGigs: GetGigsComponent, private http: HttpClient, private router: Router, private location: Location) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
-    // Appel de la méthode getGigs() du service
-    this.serviceGigs.getGigs().subscribe(response => {this.gigs = response });
-    console.log(this.gigs);
-    }else{
+    if (localStorage.getItem('token')) {
+      // Appel de la méthode getGigs() du service
+      this.serviceGigs.getGigs().subscribe(response => {
+        this.gigs = response;
+        console.log(this.gigs); // Vérification des données reçues depuis le serveur
+        if (this.gigs.length === 0) {
+          this.showEmptyText = true;
+        }
+      },error => {
+        console.log(error);
+        this.showEmptyText = true;
+      });
+    } else {
       window.location.href = '/login';
     }
   }
+  
+  
 
   addGigs() {
     // Redirection vers la page d'ajout de concerts
