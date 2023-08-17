@@ -36,7 +36,7 @@ export class AddGigsFormComponent implements OnInit {
     };
     console.log(gigData);
 
-    const apiUrl = "http://127.0.0.1:8080/addGigToList";
+    const apiUrl = "http://127.0.0.1:8080/addGigToList?userId="+localStorage.getItem('userId');
 
     this.http.post(apiUrl, gigData).subscribe(
       (response) => {

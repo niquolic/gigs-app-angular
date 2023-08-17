@@ -20,7 +20,7 @@ export class GetGigsComponent {
   }
 
   getGigById(id: any) {
-    this.urlId = "http://127.0.0.1:8080/getGigById?userId=" + id;
+    this.urlId = "http://127.0.0.1:8080/getGigById?id=" + id;
     return this.http.get(this.urlId);
   }
 

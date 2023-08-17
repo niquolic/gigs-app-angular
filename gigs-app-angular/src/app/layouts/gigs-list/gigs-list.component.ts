@@ -43,7 +43,7 @@ export class GigsListComponent implements OnInit{
   }
 
   deleteGig(id: any) {
-    const apiUrl = "http://127.0.0.1:8080/deleteGig";
+    const apiUrl = "http://127.0.0.1:8080/deleteGig?userId="+localStorage.getItem('userId');
     this.http.post(apiUrl, id, {responseType: 'text'}).subscribe(
       (response) => {
         alert("Concert supprimé");
