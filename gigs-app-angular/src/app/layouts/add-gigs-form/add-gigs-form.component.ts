@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
 export class AddGigsFormComponent implements OnInit {
 
   userId!: string;
-  bandGig!: string;
+  bandGig: string[] = [];
   cityGig!: string;
   dateGig!: string;
   venueGig!: string;
   countryGig!: string;
+  i: number = 0;
 
   constructor(private router: Router, private http: HttpClient) { };
 
@@ -22,6 +23,28 @@ export class AddGigsFormComponent implements OnInit {
     if(!localStorage.getItem('token')) {
       window.location.href = '/login';
     }
+  }
+
+  addBand(event: Event){
+    event.preventDefault();
+    this.i = this.i + 1;
+    const div = document.getElementById('addBand')
+    const element = document.createElement("input");
+    element.type = "text";
+    element.style.marginTop = "10px";
+    element.style.height = "30px";
+    element.style.width = "350px";
+    element.name = "bandInput";
+    element.placeholder = "Groupe/Artiste";
+    const br = document.createElement("br");
+    div?.appendChild(element);
+    div?.appendChild(br);
+    this.bandGig.push('');
+    element.addEventListener('input', (e) => {
+      const inputElement = e.target as HTMLInputElement;
+      this.bandGig[this.i] = inputElement.value;
+    });
+    document.getElementById('addBand')!.style.display = 'block';
   }
 
   onSubmitAddForm(event: Event){
