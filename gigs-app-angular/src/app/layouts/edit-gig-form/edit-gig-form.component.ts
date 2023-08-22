@@ -13,7 +13,7 @@ export class EditGigFormComponent {
   id: any;
   gig: any;
   userId!: string;
-  bandGig!: string;
+  bandGig!: string[]; 
   cityGig!: string;
   dateGig!: string;
   venueGig!: string;
@@ -28,6 +28,7 @@ export class EditGigFormComponent {
     });
     this.serviceGigs.getGigById(this.id).subscribe((response) => {
       this.gig = response;
+      console.log(this.gig)
     }, (error) => {
       console.log(error);
     });

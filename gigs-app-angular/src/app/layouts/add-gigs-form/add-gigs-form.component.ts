@@ -51,7 +51,7 @@ export class AddGigsFormComponent implements OnInit {
     event.preventDefault();
     const gigData = {
       userId: localStorage.getItem('userId'),
-      band: this.bandGig,
+      bands: this.bandGig,
       city: this.cityGig,
       date: this.dateGig,
       venue: this.venueGig,

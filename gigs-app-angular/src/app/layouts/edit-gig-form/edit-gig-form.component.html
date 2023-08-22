@@ -1,7 +1,10 @@
 <form (submit)="onSubmitEditForm($event)">
     <b><label for="emailInput">Modifiez votre concert</label></b><br/>
     <!-- [(ngModel)] permet de lier la valeur de l'input à la variable du fichier TypeScript -->
-    <input type="text" id="bandInput" name="bandInput" [(ngModel)]="gig.band"><br/>
+    <div *ngFor="let band of gig.bands; let i = index">
+        {{ i }}{{ gig.bands[i] }}
+        <input type="text" id="bandInput" name="bandInput" [(ngModel)]="gig.bands[i]"><br/>
+    </div>
     <input type="text" id="cityInput" name="cityInput" [(ngModel)]="gig.city"><br/>
     <input type="text" id="venueInput" name="venueInput" [(ngModel)]="gig.venue"><br/>
     <input type="text" id="countryInput" name="countryInput" [(ngModel)]="gig.country"><br/>
