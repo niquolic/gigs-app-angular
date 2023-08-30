@@ -3,6 +3,14 @@ import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { TokenService } from '../../services/tokenService/token.service';
+
+interface JwtPayload {
+  sub: string; // Propriété 'sub' pour le login
+  userId: number; // Propriété 'userId' pour l'identifiant de l'utilisateur
+  iat: number; // Propriété 'iat' pour la date d'émission du token
+  exp: number; // Propriété 'exp' pour la date d'expiration du token
+}
 
 @Component({
   selector: 'app-gigs-list',
@@ -15,7 +23,13 @@ export class GigsListComponent implements OnInit{
   gigs: any = [];
   showEmptyText: boolean = false;
 
-  constructor(private serviceGigs: GetGigsComponent, private http: HttpClient, private router: Router, private location: Location) { }
+  constructor(
+    private serviceGigs: GetGigsComponent,
+    private http: HttpClient,
+    private router: Router,
+    private location: Location,
+    private tokenService: TokenService
+    ) { }
 
   ngOnInit() {
     if (localStorage.getItem('token')) {

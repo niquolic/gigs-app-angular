@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
@@ -15,15 +15,22 @@ interface JwtPayload {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   // Déclaration des propriétés
   userLogin!: string;
   userPassword!: string;
+  private tokenExpirationTimer: any;
 
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    if(this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
   }
 
   onContinue(): void {
@@ -48,6 +55,16 @@ export class LoginComponent implements OnInit {
         // Enregistrement du token et de l'identifiant utilisateur dans le localStorage pour y avoir accès dans les autres composants
         localStorage.setItem('token', response);
         localStorage.setItem('userId', userId.toString());
+
+        // Récupération de la date d'expiration du token
+        const expirationDate = new Date(decodedToken.exp + 1000);
+        const currentTime = new Date();
+        const expiresIn = expirationDate.getTime() - currentTime.getTime();
+        // Suppression automatique
+        this.tokenExpirationTimer = setTimeout(() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('userId');
+        }, expiresIn)
         // Redirection vers la page d'accueil
         this.router.navigate(['/dashboard']);
       },
