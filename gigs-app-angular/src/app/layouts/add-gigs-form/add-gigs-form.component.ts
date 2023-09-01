@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { TokenService } from '../../services/tokenService/token.service';
 
 @Component({
   selector: 'app-add-gigs-form',
@@ -17,10 +18,14 @@ export class AddGigsFormComponent implements OnInit {
   countryGig!: string;
   i: number = 0;
 
-  constructor(private router: Router, private http: HttpClient) { };
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private tokenService: TokenService
+  ) { };
 
   ngOnInit() {
-    if(!localStorage.getItem('token')) {
+    if(this.tokenService.isTokenExpired()) {
       window.location.href = '/login';
     }
   }

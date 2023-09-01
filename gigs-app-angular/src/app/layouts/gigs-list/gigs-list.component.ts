@@ -32,7 +32,7 @@ export class GigsListComponent implements OnInit{
     ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
+    if (!this.tokenService.isTokenExpired()) {
       // Appel de la méthode getGigs() du service
       this.serviceGigs.getGigs().subscribe(response => {
         this.gigs = response;

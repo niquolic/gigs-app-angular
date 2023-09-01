@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
 import { Router } from '@angular/router';
+import { TokenService } from '../../services/tokenService/token.service';
 
 @Component({
   selector: 'app-edit-gig-form',
@@ -19,9 +20,16 @@ export class EditGigFormComponent {
   venueGig!: string;
   countryGig!: string;
 
-  constructor(private serviceGigs: GetGigsComponent,private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  constructor(
+    private serviceGigs: GetGigsComponent,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit() {
+    if (!this.tokenService.isTokenExpired()) {
     // Récupération de l'id du concert à modifier
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -32,6 +40,9 @@ export class EditGigFormComponent {
     }, (error) => {
       console.log(error);
     });
+    } else {
+      window.location.href = '/login';
+    }
   }
 
   onSubmitEditForm(event: any) {
