@@ -10,7 +10,7 @@ td, th {
     padding: 8px;
 }
 
-div {
+#emptyText {
     text-align: center;
     margin: 0% 20% 0% 20%;
     padding-top: 300px;
@@ -19,6 +19,32 @@ div {
     }
     button {
         background-color: #007bff;
+        width: 200px;
+        height: 40px;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+}
+
+#spotifyLogin {
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    button {
+        text-align: center;
+        background-color: #1DB954;
         width: 200px;
         height: 40px;
         color: #fff;

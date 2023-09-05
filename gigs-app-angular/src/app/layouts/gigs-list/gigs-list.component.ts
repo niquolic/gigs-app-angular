@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { TokenService } from '../../services/tokenService/token.service';
+import { SpotifyService } from '../../services/spotifyService/spotify.service';
 
 interface JwtPayload {
   sub: string; // Propriété 'sub' pour le login
@@ -22,16 +23,21 @@ export class GigsListComponent implements OnInit{
   // Initialisation de la propriété gigs
   gigs: any = [];
   showEmptyText: boolean = false;
+  isLoggedToSpotify: boolean = true;
 
   constructor(
     private serviceGigs: GetGigsComponent,
     private http: HttpClient,
     private router: Router,
     private location: Location,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private spotifyService: SpotifyService
     ) { }
 
   ngOnInit() {
+    if(!localStorage.getItem('spotifyToken')) {
+      this.isLoggedToSpotify = false;
+    }
     if (!this.tokenService.isTokenExpired()) {
       // Appel de la méthode getGigs() du service
       this.serviceGigs.getGigs().subscribe(response => {
@@ -49,7 +55,9 @@ export class GigsListComponent implements OnInit{
     }
   }
   
-  
+  loginToSpotify() {
+    this.spotifyService.login();
+  }
 
   addGigs() {
     // Redirection vers la page d'ajout de concerts

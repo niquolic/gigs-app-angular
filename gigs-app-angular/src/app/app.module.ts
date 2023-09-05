@@ -13,6 +13,7 @@ import { AddGigsFormComponent } from './layouts/add-gigs-form/add-gigs-form.comp
 import { AddGigsComponent } from './pages/add-gigs/add-gigs.component';
 import { EditGigFormComponent } from './layouts/edit-gig-form/edit-gig-form.component';
 import { EditGigComponent } from './pages/edit-gig/edit-gig.component';
+import { CallbackSpotifyComponent } from './layouts/callback-spotify/callback-spotify.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditGigComponent } from './pages/edit-gig/edit-gig.component';
     AddGigsFormComponent,
     AddGigsComponent,
     EditGigFormComponent,
-    EditGigComponent
+    EditGigComponent,
+    CallbackSpotifyComponent
   ],
   imports: [
     BrowserModule,
