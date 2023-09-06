@@ -8,10 +8,15 @@ import { SpotifyService } from 'src/app/services/spotifyService/spotify.service'
 })
 export class CallbackSpotifyComponent implements OnInit {
 
+  private callbackExecuted = false;
+
   constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit() {
-    this.spotifyService.callback();
+    if(!this.callbackExecuted) {
+      this.spotifyService.callback();
+      this.callbackExecuted = true;
+    }
   }
 
 }

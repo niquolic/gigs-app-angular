@@ -35,6 +35,9 @@ export class GigsListComponent implements OnInit{
     ) { }
 
   ngOnInit() {
+    if(localStorage.getItem('spotifyToken')) {
+      this.isLoggedToSpotify = true;
+    }
     if(!localStorage.getItem('spotifyToken')) {
       this.isLoggedToSpotify = false;
     }
