@@ -24,6 +24,7 @@ export class GigsListComponent implements OnInit{
   gigs: any = [];
   showEmptyText: boolean = false;
   isLoggedToSpotify: boolean = true;
+  spotifyImage: string = '/assets/img/spotify.png';
 
   constructor(
     private serviceGigs: GetGigsComponent,
