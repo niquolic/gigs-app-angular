@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TokenService } from '../../services/tokenService/token.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class EditGigFormComponent {
     });
     this.serviceGigs.getGigById(this.id).subscribe((response) => {
       this.gig = response;
-      console.log(this.gig)
+      console.log(this.gig);
     }, (error) => {
       console.log(error);
     });
