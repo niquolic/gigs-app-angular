@@ -14,6 +14,8 @@ import { AddGigsComponent } from './pages/add-gigs/add-gigs.component';
 import { EditGigFormComponent } from './layouts/edit-gig-form/edit-gig-form.component';
 import { EditGigComponent } from './pages/edit-gig/edit-gig.component';
 import { CallbackSpotifyComponent } from './layouts/callback-spotify/callback-spotify.component';
+import { StatsComponentComponent } from './layouts/stats-component/stats-component.component';
+import { StatsGigsComponent } from './pages/stats-gigs/stats-gigs.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CallbackSpotifyComponent } from './layouts/callback-spotify/callback-sp
     AddGigsComponent,
     EditGigFormComponent,
     EditGigComponent,
-    CallbackSpotifyComponent
+    CallbackSpotifyComponent,
+    StatsComponentComponent,
+    StatsGigsComponent
   ],
   imports: [
     BrowserModule,
