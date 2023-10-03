@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class StatsComponentComponent implements OnInit {
 
   ngOnInit() {
-    console.log("salut");
+    if(!localStorage.getItem('token')){
+      window.location.href = '/login';
+    }
   }
 
 }
