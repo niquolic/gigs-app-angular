@@ -18,6 +18,7 @@ export class StatsComponentComponent implements OnInit {
   constructor(private serviceStats : GetStatsService) {
     this.emptyText = false;
     this.totalNumberOfGigsThisYear = 0;
+    this.totalNumberOfGigs = 0;
   }
 
   ngOnInit() {
