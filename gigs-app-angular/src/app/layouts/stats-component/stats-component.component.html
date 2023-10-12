@@ -4,24 +4,24 @@
             <h2>Groupes que vous avez le plus vu</h2>
             <p *ngIf="emptyText == true">Vous n'avez pas renseigné de concerts.</p>
             <div *ngFor="let band of bandsStats">
-                <p>{{ band.band }} --- {{ band.count }}</p>
+                <p>{{ band.band }} - x{{ band.count }} </p>
             </div>
         </div>
         <div class="h2-div">
             <h2>Nombre de concerts vus</h2>
-            <p>{{ totalNumberOfGigs }}</p>
+            <p class="number">{{ totalNumberOfGigs }}</p>
         </div>
     </div>
     <div class="col-div">
         <div class="h2-div">
             <h2>Nombre de concerts vus cette année</h2>
-            <p>{{ totalNumberOfGigsThisYear }}</p>
+            <p class="number">{{ totalNumberOfGigsThisYear }}</p>
         </div>
         <div class="h2-div">
             <h2>Pays ou vous avez vu le plus de concerts</h2>
             <p *ngIf="emptyText == true">Vous n'avez pas renseigné de concerts.</p>
             <div *ngFor="let country of countryStats">
-                <p>{{ country.country }} --- {{ country.count }}</p>
+                <p>{{ country.country }} - x{{ country.count }}</p>
             </div>
         </div>
     </div>
