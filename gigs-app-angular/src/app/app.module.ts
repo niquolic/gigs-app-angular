@@ -15,7 +15,9 @@ import { EditGigFormComponent } from './layouts/edit-gig-form/edit-gig-form.comp
 import { EditGigComponent } from './pages/edit-gig/edit-gig.component';
 import { CallbackSpotifyComponent } from './layouts/callback-spotify/callback-spotify.component';
 import { StatsComponentComponent } from './layouts/stats-component/stats-component.component';
-import { StatsGigsComponent } from './pages/stats-gigs/stats-gigs.component'
+import { StatsGigsComponent } from './pages/stats-gigs/stats-gigs.component';
+import { OAuthModule } from 'angular-oauth2-oidc';;
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,12 @@ import { StatsGigsComponent } from './pages/stats-gigs/stats-gigs.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['https://api.example.com'],
+        sendAccessToken: true
+      },})
   ],
   providers: [],
   bootstrap: [AppComponent]

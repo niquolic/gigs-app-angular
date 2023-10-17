@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { TokenService } from '../../services/tokenService/token.service';
 import { SpotifyService } from '../../services/spotifyService/spotify.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 interface JwtPayload {
   sub: string; // Propriété 'sub' pour le login
@@ -25,6 +26,7 @@ export class GigsListComponent implements OnInit{
   showEmptyText: boolean = false;
   isLoggedToSpotify: boolean = true;
   spotifyImage: string = '/assets/img/spotify.png';
+  accessTokenGoogle = this.oauthService.getAccessToken()
 
   constructor(
     private serviceGigs: GetGigsComponent,
@@ -32,7 +34,8 @@ export class GigsListComponent implements OnInit{
     private router: Router,
     private location: Location,
     private tokenService: TokenService,
-    private spotifyService: SpotifyService
+    private spotifyService: SpotifyService,
+    private oauthService: OAuthService
     ) { }
 
   ngOnInit() {
@@ -58,6 +61,12 @@ export class GigsListComponent implements OnInit{
       window.location.href = '/login';
     }
   }
+
+  loginWithGoogle() {
+    console.log('test')
+    // Initialisez le processus d'authentification OAuth2 avec Google
+    this.oauthService.initLoginFlow();
+  }
   
   loginToSpotify() {
     this.spotifyService.login();
@@ -66,6 +75,8 @@ export class GigsListComponent implements OnInit{
   addGigs() {
     // Redirection vers la page d'ajout de concerts
     window.location.href = '/add-gigs';
+    localStorage.setItem('googleClientID', '743232516922-48r0qj9tcv7acouo8d0mhklp5ab5itcn.apps.googleusercontent.com');
+        localStorage.setItem('googleSecretID', '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');
   }
 
   deleteGig(id: any) {
@@ -81,6 +92,7 @@ export class GigsListComponent implements OnInit{
   }
 
   editGig(id: any) {
+    console.log('accessTokenGoogle : ' + this.accessTokenGoogle);
     window.location.href = '/edit-gig?id=' + id;
   }
 
