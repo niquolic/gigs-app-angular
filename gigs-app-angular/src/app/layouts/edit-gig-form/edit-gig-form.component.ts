@@ -56,4 +56,9 @@ export class EditGigFormComponent {
       }
     );
   }
+
+  trackByFn(index: any, item: any) {
+    return index;
+ }
+  
 }
