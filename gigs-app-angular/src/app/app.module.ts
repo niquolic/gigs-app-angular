@@ -16,7 +16,8 @@ import { EditGigComponent } from './pages/edit-gig/edit-gig.component';
 import { CallbackSpotifyComponent } from './layouts/callback-spotify/callback-spotify.component';
 import { StatsComponentComponent } from './layouts/stats-component/stats-component.component';
 import { StatsGigsComponent } from './pages/stats-gigs/stats-gigs.component';
-import { OAuthModule } from 'angular-oauth2-oidc';;
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { ChildTestComponent } from './layouts/child-test/child-test.component';;
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';;
     EditGigComponent,
     CallbackSpotifyComponent,
     StatsComponentComponent,
-    StatsGigsComponent
+    StatsGigsComponent,
+    ChildTestComponent
   ],
   imports: [
     BrowserModule,
