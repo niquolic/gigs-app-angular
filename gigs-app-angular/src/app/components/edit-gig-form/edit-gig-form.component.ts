@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/tokenService/token.service';
+import { environnement } from 'src/environnements/environnement';
 
 @Component({
   selector: 'app-edit-gig-form',
@@ -47,7 +48,7 @@ export class EditGigFormComponent {
 
   onSubmitEditForm(event: any) {
     event.preventDefault();
-    const url = "http://127.0.0.1:8080/editGig";
+    const url = `${environnement.apiUrl}/editGig?userId=${this.userId}`;
     this.http.post(url, this.gig, {responseType: 'text'}).subscribe(
       (response) => {
         this.router.navigate(['/dashboard']);

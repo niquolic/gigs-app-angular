@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/tokenService/token.service';
+import { environnement } from 'src/environnements/environnement';
 
 @Component({
   selector: 'app-add-gigs-form',
@@ -26,7 +27,7 @@ export class AddGigsFormComponent implements OnInit {
 
   ngOnInit() {
     if(this.tokenService.isTokenExpired()) {
-      window.location.href = '/login';
+      this.router.navigate(['/login']);
     }
   }
 
@@ -64,7 +65,7 @@ export class AddGigsFormComponent implements OnInit {
     };
     console.log(gigData);
 
-    const apiUrl = "http://127.0.0.1:8080/addGigToList?userId="+localStorage.getItem('userId');
+    const apiUrl = `${environnement.apiUrl}/addGigToList?userId=${localStorage.getItem('userId')}`;
 
     this.http.post(apiUrl, gigData).subscribe(
       (response) => {

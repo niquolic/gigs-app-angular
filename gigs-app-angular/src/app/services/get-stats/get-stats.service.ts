@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environnement } from 'src/environnements/environnement';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,19 @@ export class GetStatsService {
   constructor(private http : HttpClient) { }
 
   getBandsStats(){
-    return this.http.get('http://127.0.0.1:8080/getStatsOfUser?userId='+this.userId);
+    return this.http.get(`${environnement.apiUrl}/getStatsOfUser?userId=${this.userId}`);
   }
 
   getTotalNumberOfGigs(){
-    return this.http.get('http://127.0.0.1:8080/getTotalNumberOfGigs?userId='+this.userId);
+    return this.http.get(`${environnement.apiUrl}/getTotalNumberOfGigs?userId=${this.userId}`);
   }
 
   getTotalNumberOfGigsThisYear(){
-    return this.http.get('http://127.0.0.1:8080/getTotalNumberOfGigsThisYear?userId='+this.userId);
+    return this.http.get(`${environnement.apiUrl}/getTotalNumberOfGigsThisYear?userId=${this.userId}`);
   }
 
   getCountryStatsOfUser(){
-    return this.http.get('http://127.0.0.1:8080/getCountryStatsOfUser?userId='+this.userId);
+    return this.http.get(`${environnement.apiUrl}/getCountryStatsOfUser?userId=${this.userId}`);
   }
 
 }

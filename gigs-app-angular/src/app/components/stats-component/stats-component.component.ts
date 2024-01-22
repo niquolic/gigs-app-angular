@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { GetStatsService } from '../../services/get-stats/get-stats.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stats-component',
@@ -21,9 +22,11 @@ export class StatsComponentComponent implements OnInit {
     this.totalNumberOfGigs = 0;
   }
 
+  private router: Router = inject(Router);
+
   ngOnInit() {
     if(!localStorage.getItem('token')){
-      window.location.href = '/login';
+      this.router.navigate(['/login']);;
     }else{
       this.serviceStats.getBandsStats().subscribe(response => {
         this.bandsStats = response;
@@ -49,7 +52,9 @@ export class StatsComponentComponent implements OnInit {
       });
 
       this.serviceStats.getTotalNumberOfGigsThisYear().subscribe(response => {
-        this.totalNumberOfGigsThisYear = response;
+        if(response != null){
+          this.totalNumberOfGigsThisYear = response;
+        }
         console.log(this.totalNumberOfGigsThisYear);
         this.loading = false;
       }, error => {
