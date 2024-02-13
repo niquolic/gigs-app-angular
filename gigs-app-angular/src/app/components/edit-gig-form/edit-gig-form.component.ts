@@ -5,6 +5,7 @@ import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/tokenService/token.service';
 import { environnement } from 'src/environnements/environnement';
+import { count } from 'rxjs';
 
 @Component({
   selector: 'app-edit-gig-form',
@@ -20,6 +21,7 @@ export class EditGigFormComponent {
   dateGig!: string;
   venueGig!: string;
   countryGig!: string;
+  i: number = 0;
 
   constructor(
     private serviceGigs: GetGigsComponent,
@@ -46,6 +48,37 @@ export class EditGigFormComponent {
     }
   }
 
+  addBand(event: Event){
+    event.preventDefault();
+    this.i = this.i + 1;
+    const div = document.getElementById('addBand')
+    const element = document.createElement("input");
+    element.type = "text";
+    element.style.marginTop = "10px";
+    element.style.height = "30px";
+    element.style.width = "350px";
+    element.name = "bandInput";
+    const inputs = document.getElementsByName('bandDiv');
+    const nbInputs = inputs.length;
+    element.id = "bandInput"+nbInputs;
+    element.placeholder = "Groupe/Artiste";
+    const br = document.createElement("br");
+    div?.appendChild(element);
+    div?.appendChild(br);
+    this.bandGig.push('');
+    element.addEventListener('input', (e) => {
+      const inputElement = e.target as HTMLInputElement;
+      const newIndex = this.gig.bands - 1; // Utilisez la longueur actuelle de this.bandGig comme index
+      this.gig.bands[newIndex] = inputElement.value;
+    });    
+    document.getElementById('addBand')!.style.display = 'block';
+  }
+
+  deleteBand(i: number, event: Event){
+    event.preventDefault();
+    this.gig.bands.splice(i, 1);
+  }
+
   onSubmitEditForm(event: any) {
     event.preventDefault();
     const url = `${environnement.apiUrl}/editGig?userId=${this.userId}`;
@@ -60,6 +93,6 @@ export class EditGigFormComponent {
 
   trackByFn(index: any, item: any) {
     return index;
- }
+  }
   
 }
