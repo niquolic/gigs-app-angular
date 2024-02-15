@@ -26,4 +26,23 @@ form {
             background-color: #0056b3;
         }
     }
+    #addBandButton{
+        background-color: #fff;
+        margin-top: 10px;
+        width: 300px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        color: #000000;
+        cursor: pointer;
+    }
+    #btn-delete{
+        all: unset;
+        padding-left: 10px;
+        svg{
+            fill: #f20202;
+            padding-right: 10px;
+        }
+    }
 }

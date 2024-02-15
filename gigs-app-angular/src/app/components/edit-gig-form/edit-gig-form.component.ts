@@ -16,12 +16,13 @@ export class EditGigFormComponent {
   id: any;
   gig: any;
   userId!: string;
-  bandGig!: string[]; 
+  bandGig: string[] = []; 
   cityGig!: string;
   dateGig!: string;
   venueGig!: string;
   countryGig!: string;
   i: number = 0;
+  newBands: string[] = [];
 
   constructor(
     private serviceGigs: GetGigsComponent,
@@ -66,10 +67,11 @@ export class EditGigFormComponent {
     div?.appendChild(element);
     div?.appendChild(br);
     this.bandGig.push('');
+    const newIndex = this.newBands.length;
     element.addEventListener('input', (e) => {
       const inputElement = e.target as HTMLInputElement;
-      const newIndex = this.gig.bands - 1; // Utilisez la longueur actuelle de this.bandGig comme index
-      this.gig.bands[newIndex] = inputElement.value;
+      this.newBands[newIndex] = inputElement.value;
+      console.log(this.newBands);
     });    
     document.getElementById('addBand')!.style.display = 'block';
   }
@@ -81,6 +83,12 @@ export class EditGigFormComponent {
 
   onSubmitEditForm(event: any) {
     event.preventDefault();
+    if(this.newBands.length > 0){ 
+      for(let i = 0; i < this.newBands.length; i++){
+        this.gig.bands.push(this.newBands[i]);
+        console.log(this.gig.bands)
+      }
+    }
     const url = `${environnement.apiUrl}/editGig?userId=${this.userId}`;
     this.http.post(url, this.gig, {responseType: 'text'}).subscribe(
       (response) => {
