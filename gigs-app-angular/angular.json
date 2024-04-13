@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gigs-app-angular:build:production"
+              "buildTarget": "gigs-app-angular:build:production"
             },
             "development": {
-              "browserTarget": "gigs-app-angular:build:development"
+              "buildTarget": "gigs-app-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gigs-app-angular:build"
+            "buildTarget": "gigs-app-angular:build"
           }
         },
         "test": {
