@@ -11,11 +11,8 @@ RUN command -v node || /bin/bash -c "source ~/.nvm/nvm.sh && nvm install node"
 # Mettre à jour npm à la dernière version si ce n'est pas déjà fait
 RUN command -v npm || /bin/bash -c "source ~/.nvm/nvm.sh && npm install -g npm"
 
-# Installer Angular CLI 15 si ce n'est pas déjà fait
-RUN command -v ng || npm install -g @angular/cli@15
-
-# Installer Express
-RUN npm install express
+# Installer Angular CLI 17 si ce n'est pas déjà fait
+RUN command -v ng || npm install -g @angular/cli@17
 
 RUN npm install
 
