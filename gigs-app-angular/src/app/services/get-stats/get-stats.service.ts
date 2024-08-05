@@ -27,4 +27,12 @@ export class GetStatsService {
     return this.http.get(`${environnement.apiUrl}/getCountryStatsOfUser?userId=${this.userId}`);
   }
 
+  getTotalPrice(){
+    return this.http.get(`${environnement.apiUrl}/getTotalPrice?userId=${this.userId}`);
+  }
+
+  getPriceThisYear(){
+    return this.http.get(`${environnement.apiUrl}/getPriceThisYear?userId=${this.userId}`);
+  }
+
 }

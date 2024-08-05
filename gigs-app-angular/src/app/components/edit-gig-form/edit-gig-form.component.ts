@@ -21,6 +21,7 @@ export class EditGigFormComponent {
   dateGig!: string;
   venueGig!: string;
   countryGig!: string;
+  priceGig!: string;
   i: number = 0;
   newBands: string[] = [];
 

@@ -17,6 +17,7 @@ export class AddGigsFormComponent implements OnInit {
   dateGig!: string;
   venueGig!: string;
   countryGig!: string;
+  priceGig!: string;
   i: number = 0;
 
   constructor(
@@ -61,9 +62,9 @@ export class AddGigsFormComponent implements OnInit {
       city: this.cityGig,
       date: this.dateGig,
       venue: this.venueGig,
-      country: this.countryGig
+      country: this.countryGig,
+      price: this.priceGig
     };
-    console.log(gigData);
 
     const apiUrl = `${environnement.apiUrl}/addGigToList?userId=${localStorage.getItem('userId')}`;
 
