@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetGigsComponent } from '../../services/get-gigs/get-gigs.component';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/tokenService/token.service';
-import { environnement } from 'src/environnements/environnement';
+import { environment } from 'src/environments/environment';
 import { count } from 'rxjs';
 
 @Component({
@@ -90,7 +90,7 @@ export class EditGigFormComponent {
         console.log(this.gig.bands)
       }
     }
-    const url = `${environnement.apiUrl}/editGig?userId=${this.userId}`;
+    const url = `${environment.apiUrl}/editGig?userId=${this.userId}`;
     this.http.post(url, this.gig, {responseType: 'text'}).subscribe(
       (response) => {
         this.router.navigate(['/dashboard']);

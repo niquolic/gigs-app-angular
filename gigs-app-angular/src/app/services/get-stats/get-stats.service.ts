@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environnement } from 'src/environnements/environnement';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +12,27 @@ export class GetStatsService {
   constructor(private http : HttpClient) { }
 
   getBandsStats(){
-    return this.http.get(`${environnement.apiUrl}/getStatsOfUser?userId=${this.userId}`);
+    return this.http.get(`${environment.apiUrl}/getStatsOfUser?userId=${this.userId}`);
   }
 
   getTotalNumberOfGigs(){
-    return this.http.get(`${environnement.apiUrl}/getTotalNumberOfGigs?userId=${this.userId}`);
+    return this.http.get(`${environment.apiUrl}/getTotalNumberOfGigs?userId=${this.userId}`);
   }
 
   getTotalNumberOfGigsThisYear(){
-    return this.http.get(`${environnement.apiUrl}/getTotalNumberOfGigsThisYear?userId=${this.userId}`);
+    return this.http.get(`${environment.apiUrl}/getTotalNumberOfGigsThisYear?userId=${this.userId}`);
   }
 
   getCountryStatsOfUser(){
-    return this.http.get(`${environnement.apiUrl}/getCountryStatsOfUser?userId=${this.userId}`);
+    return this.http.get(`${environment.apiUrl}/getCountryStatsOfUser?userId=${this.userId}`);
   }
 
   getTotalPrice(){
-    return this.http.get(`${environnement.apiUrl}/getTotalPrice?userId=${this.userId}`);
+    return this.http.get(`${environment.apiUrl}/getTotalPrice?userId=${this.userId}`);
   }
 
   getPriceThisYear(){
-    return this.http.get(`${environnement.apiUrl}/getPriceThisYear?userId=${this.userId}`);
+    return this.http.get(`${environment.apiUrl}/getPriceThisYear?userId=${this.userId}`);
   }
 
 }

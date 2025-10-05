@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
-import { environnement } from 'src/environnements/environnement';
+import { environment } from 'src/environments/environment';
 
 interface JwtPayload {
   sub: string;
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmitForm(event: Event) {
     event.preventDefault();
 
-    const apiUrl = `${environnement.apiUrl}/getUserByLoginAndPassword`;
+    const apiUrl = `${environment.apiUrl}/getUserByLoginAndPassword`;
     const params = new HttpParams().set('login', this.userLogin).set('password', this.userPassword);
 
     this.http.get(apiUrl, { params, responseType: 'text' }).subscribe(

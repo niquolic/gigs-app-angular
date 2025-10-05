@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { TokenService } from '../../services/tokenService/token.service';
 import { SpotifyService } from '../../services/spotifyService/spotify.service';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { environnement } from 'src/environnements/environnement';
+import { environment } from 'src/environments/environment';
 
 interface JwtPayload {
   sub: string; // Propriété 'sub' pour le login
@@ -81,7 +81,7 @@ export class GigsListComponent implements OnInit{
   }
 
   deleteGig(id: any) {
-    const apiUrl = `${environnement.apiUrl}/deleteGig?userId=${localStorage.getItem('userId')}`;
+    const apiUrl = `${environment.apiUrl}/deleteGig?userId=${localStorage.getItem('userId')}`;
     this.http.post(apiUrl, id, {responseType: 'text'}).subscribe(
       (response) => {
         alert("Concert supprimé");

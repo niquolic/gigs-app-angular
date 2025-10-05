@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/tokenService/token.service';
-import { environnement } from 'src/environnements/environnement';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-gigs-form',
@@ -66,7 +66,7 @@ export class AddGigsFormComponent implements OnInit {
       price: this.priceGig
     };
 
-    const apiUrl = `${environnement.apiUrl}/addGigToList?userId=${localStorage.getItem('userId')}`;
+    const apiUrl = `${environment.apiUrl}/addGigToList?userId=${localStorage.getItem('userId')}`;
 
     this.http.post(apiUrl, gigData).subscribe(
       (response) => {

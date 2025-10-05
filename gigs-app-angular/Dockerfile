@@ -1,20 +1,39 @@
-# Stage 1 : Installation des dépendances et construction de l'application Angular
-FROM node:latest AS angular-build
+# ================================================================= 
+# Stage 1: Build Angular
+# ================================================================= 
+FROM node:20 AS angular-build  
+
 WORKDIR /app
-COPY . .
-# Installation de NVM (Node Version Manager) si Node.js n'est pas déjà installé
-RUN command -v node || (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash)
+COPY package.json package-lock.json ./  
+RUN npm install  
+COPY . .  
+RUN npm run build -- --output-path=dist/browser  
 
-# Source de NVM dans le shell et installer Node.js si ce n'est pas déjà installé
-RUN command -v node || /bin/bash -c "source ~/.nvm/nvm.sh && nvm install node"
+# ================================================================= 
+# Stage 2: Nginx avec substitution de port
+# ================================================================= 
+FROM nginx:alpine  
 
-# Mettre à jour npm à la dernière version si ce n'est pas déjà fait
-RUN command -v npm || /bin/bash -c "source ~/.nvm/nvm.sh && npm install -g npm"
+# Copier les fichiers statiques
+COPY --from=angular-build /app/dist/browser /usr/share/nginx/html  
 
-# Installer Angular CLI 17 si ce n'est pas déjà fait
-RUN command -v ng || npm install -g @angular/cli@17
+# Copier le template nginx
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
-RUN npm install
+# Créer le script DIRECTEMENT dans le Dockerfile (pas de problème CRLF)
+RUN printf '#!/bin/sh\n\
+set -e\n\
+export PORT=${PORT:-8080}\n\
+echo "=== Starting Nginx on port $PORT ==="\n\
+envsubst '"'"'$PORT'"'"' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf\n\
+echo "=== Generated nginx config ==="\n\
+cat /etc/nginx/conf.d/default.conf\n\
+echo "=== Testing nginx config ==="\n\
+nginx -t\n\
+echo "=== Starting nginx ==="\n\
+exec nginx -g "daemon off;"\n' > /docker-entrypoint.sh && \
+    chmod +x /docker-entrypoint.sh
 
-# Exécuter l'application Angular en mode développement avec hot-reload
-CMD ["npm", "start"]
+EXPOSE 8080
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

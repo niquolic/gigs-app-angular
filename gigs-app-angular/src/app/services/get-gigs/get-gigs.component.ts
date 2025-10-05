@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environnement } from 'src/environnements/environnement';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class GetGigsComponent {
   // Récupération de l'identifiant utilisateur stocké dans le localStorage
   userId = localStorage.getItem('userId');
 
-  private urlAll = `${environnement.apiUrl}/getGigsByUserId?userId=${this.userId}`;
+  private urlAll = `${environment.apiUrl}/getGigsByUserId?userId=${this.userId}`;
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class GetGigsComponent {
   }
 
   getGigById(id: any) {
-    return this.http.get(`${environnement.apiUrl}/getGigById?id=${id}`);
+    return this.http.get(`${environment.apiUrl}/getGigById?id=${id}`);
   }
 
 }
